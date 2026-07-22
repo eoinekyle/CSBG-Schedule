@@ -3082,6 +3082,412 @@ h1{
 }
 </style>
 
+
+
+<style id="responsive-structure-lock-v17">
+/* =========================================================
+   RESPONSIVE STRUCTURE LOCK V17
+   Keeps the original design, animations and decorative motifs,
+   while preventing header reordering, oversized blank zones,
+   overlap and horizontal overflow on narrow devices.
+   ========================================================= */
+
+html, body, .wrap, .terminal, .term-chrome, .hero, .panel,
+.rows, .row, .term-footer { min-width: 0 !important; }
+
+/* Compact tablets: retain the desktop two-column relationship
+   without forcing an unnecessarily tall hero. */
+@media (min-width: 761px) and (max-width: 900px){
+  .hero{
+    min-height: 360px !important;
+    padding: 46px clamp(34px,5vw,52px) 42px !important;
+    grid-template-columns: minmax(0,1.08fr) minmax(220px,.78fr) !important;
+    column-gap: clamp(20px,4vw,38px) !important;
+  }
+  .frame-accent{min-height:150px !important;}
+}
+
+/* Phones and portrait tablets: same content order and visual system,
+   but scaled into one clean, balanced vertical flow. */
+@media (max-width: 760px){
+  .wrap{
+    width:100% !important;
+    padding:
+      max(8px,env(safe-area-inset-top))
+      max(8px,env(safe-area-inset-right))
+      max(26px,env(safe-area-inset-bottom))
+      max(8px,env(safe-area-inset-left)) !important;
+  }
+
+  .terminal{
+    width:100% !important;
+    overflow:hidden !important;
+  }
+
+  /* Preserve the desktop header order in one row:
+     SECTION | ACADEMIC SCHEDULE | ONLINE | window marks */
+  .term-chrome{
+    display:grid !important;
+    grid-template-columns:auto minmax(0,1fr) auto auto !important;
+    grid-template-areas:"brand id status win" !important;
+    align-items:center !important;
+    min-height:58px !important;
+    padding:10px 13px !important;
+    gap:5px !important;
+    flex-wrap:nowrap !important;
+  }
+  .brandmark{
+    grid-area:brand !important;
+    order:initial !important;
+    justify-self:start !important;
+    display:flex !important;
+    width:auto !important;
+    max-width:88px !important;
+    padding:4px 6px 4px 5px !important;
+    gap:5px !important;
+    transform:none !important;
+  }
+  .brandmark .mark{
+    width:18px !important;
+    height:18px !important;
+  }
+  .brandmark .mark span{font-size:7px !important;}
+  .brandmark .label{
+    display:block !important;
+    font-size:6.6px !important;
+    line-height:1.15 !important;
+    letter-spacing:.08em !important;
+    white-space:nowrap !important;
+  }
+  .brandmark .label b{
+    display:block !important;
+    font-size:7.6px !important;
+    letter-spacing:.08em !important;
+  }
+  .term-id{
+    grid-area:id !important;
+    order:initial !important;
+    display:block !important;
+    justify-self:start !important;
+    width:100% !important;
+    max-width:none !important;
+    overflow:visible !important;
+    text-overflow:clip !important;
+    white-space:nowrap !important;
+    font-size:clamp(6.4px,1.9vw,8px) !important;
+    letter-spacing:.07em !important;
+    text-align:left !important;
+  }
+  .term-status{
+    grid-area:status !important;
+    order:initial !important;
+    display:flex !important;
+    justify-self:end !important;
+    margin:0 !important;
+    gap:4px !important;
+    white-space:nowrap !important;
+    font-size:clamp(6.2px,1.8vw,7.4px) !important;
+    letter-spacing:.07em !important;
+  }
+  .pulse-dot{
+    width:5px !important;
+    height:5px !important;
+  }
+  .winstack{
+    grid-area:win !important;
+    order:initial !important;
+    display:flex !important;
+    justify-self:end !important;
+    margin:0 !important;
+    gap:2px !important;
+    transform:none !important;
+  }
+  .winstack span{
+    width:7px !important;
+    height:7px !important;
+  }
+
+  /* Remove the fixed mobile hero height that created the large empty gap. */
+  .hero{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) !important;
+    grid-template-rows:auto !important;
+    width:100% !important;
+    min-height:0 !important;
+    height:auto !important;
+    padding:48px clamp(26px,8vw,42px) 42px !important;
+    row-gap:0 !important;
+    text-align:center !important;
+    overflow:hidden !important;
+  }
+  .hero > .eyebrow,
+  .hero > h1,
+  .hero > .subline,
+  .hero > .clockrow{
+    grid-column:1 !important;
+    grid-row:auto !important;
+    width:100% !important;
+    min-width:0 !important;
+  }
+  .eyebrow{
+    justify-content:center !important;
+    margin-bottom:12px !important;
+    font-size:clamp(8px,2.25vw,10px) !important;
+    line-height:1.35 !important;
+    letter-spacing:.11em !important;
+    white-space:nowrap !important;
+  }
+  .eyebrow::before{width:18px !important;flex:0 0 18px !important;}
+  .eyebrow::after{flex:0 0 auto !important;}
+
+  h1{
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 auto !important;
+    font-size:clamp(2rem,9.1vw,2.65rem) !important;
+    line-height:.98 !important;
+    letter-spacing:.01em !important;
+    overflow-wrap:normal !important;
+    word-break:normal !important;
+    text-wrap:balance !important;
+  }
+
+  .subline{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    justify-content:stretch !important;
+    align-items:stretch !important;
+    width:min(100%,390px) !important;
+    margin:18px auto 0 !important;
+    gap:7px !important;
+  }
+  .chip{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:100% !important;
+    min-width:0 !important;
+    min-height:32px !important;
+    padding:5px 7px !important;
+    font-size:clamp(8.8px,2.55vw,10.5px) !important;
+    line-height:1.15 !important;
+    white-space:nowrap !important;
+  }
+
+  .clockrow{
+    margin-top:28px !important;
+  }
+  .frame-accent{
+    width:min(100%,440px) !important;
+    max-width:440px !important;
+    min-height:138px !important;
+    height:auto !important;
+    margin:0 auto !important;
+    padding:18px 14px !important;
+  }
+  #clock{
+    font-size:clamp(1.35rem,6.7vw,1.85rem) !important;
+    line-height:1.1 !important;
+    white-space:nowrap !important;
+  }
+  #clockdate{
+    margin-top:8px !important;
+    font-size:clamp(9px,2.55vw,11px) !important;
+    line-height:1.35 !important;
+  }
+  .signalbars{margin-top:12px !important;}
+
+  /* Keep all motifs, but assign each a safe edge position. */
+  .tech-decor .circuit-tl{
+    top:14px !important; left:9px !important;
+    width:60px !important; height:46px !important;
+    opacity:.20 !important;
+  }
+  .tech-decor .circuit-br{
+    right:9px !important; bottom:14px !important;
+    width:60px !important; height:46px !important;
+    opacity:.19 !important;
+  }
+  .tech-decor .dotgrid-tr{
+    top:18px !important; right:11px !important;
+    width:31px !important; height:31px !important;
+    opacity:.28 !important;
+  }
+  .tech-decor .dotgrid-bl{
+    left:11px !important; bottom:18px !important;
+    width:31px !important; height:31px !important;
+    opacity:.27 !important;
+  }
+  .tech-decor .dotgrid-midl{
+    top:39% !important; left:5px !important; bottom:auto !important;
+    width:22px !important; height:22px !important;
+    opacity:.18 !important;
+  }
+  .tech-decor .dotgrid-midr{
+    top:39% !important; right:5px !important; bottom:auto !important;
+    width:22px !important; height:22px !important;
+    opacity:.18 !important;
+  }
+  .tech-decor .chevrons-l{
+    top:57% !important; left:5px !important; bottom:auto !important;
+  }
+  .tech-decor .chevrons-r{
+    top:57% !important; right:5px !important; bottom:auto !important;
+  }
+  .tech-decor .chevrons{
+    display:flex !important;
+    gap:1px !important;
+    opacity:.52 !important;
+  }
+  .tech-decor .chevrons svg{
+    width:6px !important;
+    height:10px !important;
+  }
+  .trace-overlay{opacity:.25 !important;}
+  .hex-schematic{
+    display:block !important;
+    left:50% !important;
+    right:auto !important;
+    top:50% !important;
+    width:108% !important;
+    max-width:none !important;
+    height:auto !important;
+    transform:translate(-50%,-50%) !important;
+    opacity:.075 !important;
+  }
+
+  /* Schedule cards remain readable and keep their original cut-corner design. */
+  .panel{
+    width:100% !important;
+    padding:22px 14px 27px !important;
+  }
+  .panel[data-tab-panel="tth"]{padding-top:24px !important;}
+  .daylabel{
+    display:flex !important;
+    width:100% !important;
+    margin-bottom:15px !important;
+    gap:9px !important;
+    font-size:clamp(12px,3.4vw,14px) !important;
+    line-height:1.2 !important;
+    letter-spacing:.065em !important;
+    white-space:nowrap !important;
+  }
+  .daylabel::before{flex:0 0 24px !important;min-width:24px !important;}
+  .daylabel::after{display:block !important;flex:1 1 auto !important;min-width:18px !important;}
+
+  .rows{gap:10px !important;}
+  .row{
+    display:grid !important;
+    grid-template-areas:
+      "time room"
+      "main main" !important;
+    grid-template-columns:minmax(0,1fr) auto !important;
+    width:100% !important;
+    min-height:0 !important;
+    padding:14px !important;
+    gap:9px 10px !important;
+    align-items:start !important;
+  }
+  .rtime{
+    grid-area:time !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    gap:9px !important;
+    font-size:10.5px !important;
+    line-height:1.25 !important;
+    white-space:nowrap !important;
+  }
+  .rtime b{
+    display:inline !important;
+    font-size:12px !important;
+  }
+  .rmid{grid-area:main !important;}
+  .rroom{
+    grid-area:room !important;
+    justify-self:end !important;
+    align-self:start !important;
+    max-width:100% !important;
+    padding:5px 8px !important;
+    font-size:10px !important;
+    white-space:nowrap !important;
+  }
+  .rcode{font-size:10px !important;}
+  .rname{font-size:14px !important;line-height:1.25 !important;}
+  .rtype{font-size:9px !important;}
+
+  .panel-decor .dotgrid{
+    display:block !important;
+    width:27px !important;
+    height:27px !important;
+    opacity:.14 !important;
+  }
+  .panel-decor .pd-corner{
+    display:block !important;
+    width:20px !important;
+    height:20px !important;
+    opacity:.28 !important;
+  }
+
+  .term-footer{
+    width:100% !important;
+    padding:16px 12px 18px !important;
+  }
+  .syntax-footer{
+    width:100% !important;
+    max-width:100% !important;
+    padding:11px 10px !important;
+    font-size:clamp(9.3px,2.75vw,11.5px) !important;
+    line-height:1.55 !important;
+  }
+}
+
+/* Very narrow devices: reduce measurements only—never remove motifs. */
+@media (max-width: 360px){
+  .term-chrome{
+    min-height:54px !important;
+    padding:9px 10px !important;
+    gap:4px !important;
+  }
+  .brandmark{max-width:78px !important;padding-right:4px !important;gap:4px !important;}
+  .brandmark .mark{width:16px !important;height:16px !important;}
+  .brandmark .label{font-size:5.9px !important;}
+  .brandmark .label b{font-size:6.9px !important;}
+  .term-id{font-size:5.9px !important;letter-spacing:.045em !important;}
+  .term-status{font-size:5.8px !important;gap:3px !important;}
+  .winstack span{width:6px !important;height:6px !important;}
+
+  .hero{
+    padding:44px 23px 38px !important;
+  }
+  .eyebrow{
+    font-size:7.5px !important;
+    letter-spacing:.08em !important;
+  }
+  .eyebrow::before{width:12px !important;flex-basis:12px !important;}
+  h1{font-size:clamp(1.85rem,9.6vw,2.15rem) !important;}
+  .chip{font-size:8.2px !important;padding-inline:5px !important;}
+  .frame-accent{min-height:128px !important;}
+  #clock{font-size:clamp(1.2rem,6.7vw,1.55rem) !important;}
+  .daylabel{font-size:11.2px !important;letter-spacing:.045em !important;}
+  .row{padding:12px !important;}
+  .rtime{gap:6px !important;font-size:9.8px !important;}
+  .rtime b{font-size:11px !important;}
+  .rname{font-size:13px !important;}
+}
+
+/* Landscape phones: avoid excessive vertical padding while keeping all elements. */
+@media (max-height: 560px) and (max-width: 760px) and (orientation: landscape){
+  .hero{
+    min-height:0 !important;
+    padding-top:34px !important;
+    padding-bottom:30px !important;
+  }
+  .clockrow{margin-top:20px !important;}
+  .frame-accent{min-height:116px !important;}
+}
+</style>
+
 </head>
 <body>
 
